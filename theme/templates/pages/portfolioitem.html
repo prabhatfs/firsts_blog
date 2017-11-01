@@ -1,0 +1,62 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags static %}
+
+{% block extra_css %}
+<link rel="stylesheet" type="text/css" href="{% static "lib/slider/flexslider.css" %}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static "lib/slider/jquery.flexslider-min.js" %}" type="text/javascript"></script>
+<script type="text/javascript">
+    $(window).load(function() {
+      $('.flexslider').flexslider({
+
+        controlNav: "thumbnails"
+      });
+    });
+</script>
+{% endblock %}
+
+{% block extra_head %}
+<style type="text/css">
+.flex-direction-nav a { margin-top: -60px; }
+</style>
+{% endblock %}
+
+{% block main_class %}col-md-12{% endblock %}
+
+{% block main %}
+<div class="row">
+    <div class="col-md-7">
+
+        <div class="flexslider">
+            {% if portfolioitem.featured_image or portfolioitem.images.all %}
+            <ul class="slides">
+                {% if portfolioitem.featured_image %}
+                <li data-thumb="{{ MEDIA_URL }}{% thumbnail portfolioitem.featured_image 322 214 %}">
+                    <img alt="{{ page.title }} featured image" src="{{ MEDIA_URL }}{% thumbnail portfolioitem.featured_image 645 0 %}">
+                </li>
+                {% endif %}
+                {% for image in portfolioitem.images.all %}
+                <li data-thumb="{{ MEDIA_URL }}{% thumbnail image.file 322 214 %}">
+                    <img{% if image.alt_text %} alt="{{ image.alt_text }}"{% endif %} src="{{ MEDIA_URL }}{% thumbnail image.file 645 0 %}">
+                </li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="col-md-5">
+        {% editable portfolioitem.subtitle portfolioitem.content portfolioitem.href %}
+        {% if portfolioitem.subtitle %}<h3>{{ portfolioitem.subtitle }}</h3>{% endif %}
+        {% endeditable %}
+        {{ portfolioitem.content|richtext_filters|safe }}
+        {% if portfolioitem.href %}<a href="{{ portfolioitem.href }}" class="btn btn-primary">View Project</a>{% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block right_wrapper %}{% endblock %}

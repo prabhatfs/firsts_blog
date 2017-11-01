@@ -1,27 +1,33 @@
 {% load i18n mezzanine_tags comment_tags %}
 <div id="comments">
-<h3>{% trans "Comments" %}</h3>
+<h2>{% trans "Comments" %}</h2>
 {% if settings.COMMENTS_DISQUS_SHORTNAME %}
 {% include "generic/includes/disqus_comments.html" %}
 {% else %}
 <script>
 $(function() {
     $('.reply').click(function() {
-        $('.comment-reply-form').hide();
-        $(this).siblings('.comment-reply-form').toggle();
+        $('.reply-form').hide();
+        $(this).next('.reply-form').toggle();
     });
 });
 </script>
 <style>.input_id_honeypot {display:none !important;}</style>
+<div class="comments">
 {% comment_thread object_for_comments %}
-<h3>{% trans "New Comment" %}</h3>
-
+</div>
+<h3>{% trans "Leave a comment" %}</h3>
+<div class="comments-form">
+<form method="post" id="comment" action="{{ comment_url }}#comment" class="col-md-12">
     {% if not request.POST.replied_to %}
-		{% include "generic/includes/comment_form.html" with comment_form=posted_comment_form %}
+    {% fields_for posted_comment_form %}
     {% else %}
-    {{% include "generic/includes/comment_form.html" with comment_form=unposted_comment_form %}
+    {% fields_for unposted_comment_form %}
     {% endif %}
-    
-
+    <div class="form-actions">
+        <input class="btn btn-primary btn-large" type="submit" value="{% trans "Comment" %}">
+    </div>
+</form>
+</div>
 {% endif %}
 </div>

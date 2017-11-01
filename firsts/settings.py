@@ -42,11 +42,11 @@ from django.utils.translation import ugettext_lazy as _
 # menus a page should appear in. Note that if a menu template is used
 # that doesn't appear in this setting, all pages will appear in it.
 
-# PAGE_MENU_TEMPLATES = (
-#     (1, _("Top navigation bar"), "pages/menus/dropdown.html"),
-#     (2, _("Left-hand tree"), "pages/menus/tree.html"),
-#     (3, _("Footer"), "pages/menus/footer.html"),
-# )
+PAGE_MENU_TEMPLATES = (
+    (1, _("Top navigation bar"), "pages/menus/dropdown.html"),
+    (2, _("Left-hand tree"), "pages/menus/tree.html"),
+    (3, _("Footer"), "pages/menus/footer.html"),
+)
 
 # A sequence of fields that will be injected into Mezzanine's (or any
 # library's) models. Each item in the sequence is a four item sequence.
@@ -143,7 +143,7 @@ FILE_UPLOAD_PERMISSIONS = 0o644
 DATABASES = {
     "default": {
         # Add "postgresql_psycopg2", "mysql", "sqlite3" or "oracle".
-        "ENGINE": "django.db.backends.",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
         # DB name or path to database file if using sqlite3.
         "NAME": "",
         # Not used with sqlite3.
@@ -327,6 +327,7 @@ if os.path.exists(f):
 #RICHTEXT_WIDGET_CLASS = "tinymezzce4.widgets.TinyMceWidget"
 #TINYMCE_SETUP_JS = '/static/tinymezzce4/js/tinymce_setup.js'
 #RICHTEXT_ALLOWED_TAGS += ('iframe')
+BLOG_USE_FEATURED_IMAGE = True
 ####################
 # DYNAMIC SETTINGS #
 ####################
