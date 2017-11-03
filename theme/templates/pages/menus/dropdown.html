@@ -1,18 +1,18 @@
-{% load blog_tags i18n pages_tags %}
+{% load blog_tags i18n %}
 {% spaceless %}
 <ul class="nav navbar-nav">
-    <li class=" active">
+    <li class="{% if not category %}active{% endif %}">
     <a href="/">
-            Home
-            
+            Show All 
         </a></li>
 {% blog_categories as categories %}
 {% if categories %}
 
 
-{% for category in categories %}
+{% for cat in categories %}
 
-    <li class="dropdown"><a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a></li>
+    <li class="{% if category == cat %}active{% endif %}">
+    	<a href="{% url "blog_post_list_category" cat.slug %}">{{ cat }}</a></li>
 {% endfor %}
 {% endif %}
 </ul>
