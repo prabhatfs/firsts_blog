@@ -6,7 +6,7 @@ from mezzanine.utils.admin import SingletonAdmin
 from mezzanine.pages.admin import PageAdmin
 
 from .models import (SiteConfiguration,
-                    HomePage, Slide, Feature, Customer, Testimonial,
+                    HomePage, TopImage, Slide, Feature, Customer, Testimonial,
                     FAQPage, FAQ,
                     Portfolio, PortfolioItem, PortfolioItemImage,
                     PortfolioItemCategory)
@@ -17,6 +17,9 @@ admin.site.register(SiteConfiguration, SingletonAdmin)
 
 class SlideInline(TabularDynamicInlineAdmin):
     model = Slide
+
+class TopImageInline(TabularDynamicInlineAdmin):
+    model = TopImage
 
 
 class FeatureInline(TabularDynamicInlineAdmin):
@@ -32,7 +35,7 @@ class TestimonialInline(TabularDynamicInlineAdmin):
 
 
 class HomePageAdmin(PageAdmin):
-    inlines = (SlideInline, FeatureInline, CustomerInline, TestimonialInline)
+    inlines = (TopImageInline, FeatureInline, CustomerInline, TestimonialInline)
 
 
 admin.site.register(HomePage, HomePageAdmin)

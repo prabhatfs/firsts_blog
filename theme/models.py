@@ -25,6 +25,8 @@ class HomePage(Page):
     A page representing the format of the home page
     '''
     features_heading = models.CharField(max_length=200,
+        default="Top Image")
+    features_heading = models.CharField(max_length=200,
         default="Features")
     customers_heading = models.CharField(max_length=200,
         default="Customers")
@@ -42,11 +44,17 @@ SLIDE_TYPE_CHOICES = (
     ('NO', 'No image'),
 )
 
+class TopImage(Orderable):
+    homepage = models.ForeignKey(HomePage, related_name="top_image")
+    image = FileField(verbose_name=_("Image"),
+        upload_to=upload_to("vital_theme.Slide.image", "gallery"),
+        format="Image", max_length=255, null=True, blank=True)
+
 class Slide(Orderable):
     '''
     A slide in a slider connected to a HomePage
     '''
-    homepage = models.ForeignKey(HomePage, related_name="slides")
+    #homepage = models.ForeignKey(HomePage, related_name="slides")
     image_alignment = models.CharField(max_length=2, choices=SLIDE_TYPE_CHOICES,
         default="LE")
     image = FileField(verbose_name=_("Image"),

@@ -1,0 +1,54 @@
+{% extends "pages/page.html" %}
+
+{% load mezzanine_tags static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static "stylesheets/isotope.css" %}">
+{% endblock %}
+
+{% block extra_js %}    
+<script src="{% static "lib/jquery.isotope.min.js" %}"></script>
+<script type="text/javascript">
+
+$(function(){
+    
+    $('#gallery').imagesLoaded( function(){
+        $(this).isotope();
+    });
+
+    fancyFilter('.filter', '#gallery');
+
+});
+
+</script>
+{% endblock %}
+
+{% block main_class %}col-md-12{% endblock %}
+
+{% block main %}
+
+{% if categories %}
+<ul class="filter nav nav-pills">
+    <li class="active"><a href="#all" data-filter=".element">View all</a></li>
+    {% for category in categories %}
+    <li><a href="#{{ category.slug }}" data-filter=".{{ category.slug }}">{{ category }}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+<div id="gallery" class="gallery four" style="clear: both;">
+    {% for item in items %}            
+    <div class="element col-md-3 pull-left{% for cat in item.categories.all %} {{ cat.slug }}{% endfor %}">
+        <a href="{{ item.get_absolute_url }}">
+            <div class="crop">
+                <img src="{{ MEDIA_URL }}{% thumbnail item.featured_image 510 340 %}">
+            </div>
+        </a>
+        <h4><a class="inherit-color" href="{{ item.get_absolute_url }}">{{ item.title }}</a></h4>
+        {{ item.description_from_content|safe }}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block right_wrapper %}{% endblock %}

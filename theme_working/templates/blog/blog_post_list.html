@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% load i18n mezzanine_tags blog_tags keyword_tags disqus_tags %}
+
+{% block meta_title %}{% if page %}{{ page.richtextpage.meta_title }}{% else %}{% trans "Blog" %}{% endif %}{% endblock %}
+
+{% block meta_keywords %}{% metablock %}
+{% keywords_for page as keywords %}
+{% for keyword in keywords %}
+    {% if not forloop.first %}, {% endif %}
+    {{ keyword }}
+{% endfor %}
+{% endmetablock %}{% endblock %}
+
+{% block meta_description %}{% metablock %}
+{{ page.description }}
+{% endmetablock %}{% endblock %}
+
+{% block title %}
+{% if page %}
+{% editable page.title %}{{ page.title }}{% endeditable %}
+{% else %}
+{% trans "Blog" %}
+{% endif %}
+{% endblock %}
+
+{% block breadcrumb_menu %}
+{{ block.super }}
+{% if tag or category or year or month or author %}
+<li>{% spaceless %}
+{% if tag %}
+    {% trans "Tag:" %} {{ tag }}
+{% else %}{% if category %}
+    {% trans "Category:" %} {{ category }}
+{% else %}{% if year or month %}
+    {% if month %}{{ month }}, {% endif %}{{ year }}
+{% else %}{% if author %}
+    {% trans "Author:" %} {{ author.get_full_name|default:author.username }}
+{% endif %}{% endif %}{% endif %}{% endif %}
+{% endspaceless %}
+</li>
+{% endif %}
+{% endblock %}
+
+{% block main %}
+
+{% if tag or category or year or month or author %}
+    {% block blog_post_list_filterinfo %}
+    <p>
+    {% if tag %}
+        {% trans "Viewing posts tagged" %} {{ tag }}
+    {% else %}{% if category %}
+        {% trans "Viewing posts for the category" %} {{ category }}
+    {% else %}{% if year or month %}
+        {% trans "Viewing posts from" %} {% if month %}{{ month }}, {% endif %}
+        {{ year }}
+    {% else %}{% if author %}
+        {% trans "Viewing posts by" %}
+        {{ author.get_full_name|default:author.username }}
+    {% endif %}{% endif %}{% endif %}{% endif %}
+    {% endblock %}
+    </p>
+{% else %}
+    {% if page %}
+    {% block blog_post_list_pagecontent %}
+    {% editable page.richtextpage.content %}
+    {{ page.richtextpage.content|richtext_filters|safe }}
+    {% endeditable %}
+    {% endblock %}
+    {% endif %}
+{% endif %}
+<div id="blog-posts">
+{% for blog_post in blog_posts.object_list %}
+    <div class="blog-post row">
+        {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
+        {% block blog_post_list_post_featured_image %}
+        <div class="col-md-4">
+            <a href="{{ blog_post.get_absolute_url }}" class="thumb">
+                <img src="{{ MEDIA_URL }}{% thumbnail blog_post.featured_image 526 0 %}" class="img-responsive hidden-xs">
+            </a>
+        </div>
+        {% endblock %}
+        {% endif %}
+        <div class="col-md-8">
+            <div class="post-summary">      
+                <p class="muted date">
+                    {% blocktrans with sometime=blog_post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}
+                    {% with blog_post.categories.all as categories %}
+                    {% if categories %}
+                    {% trans "in" %}
+                    {% for category in categories %}
+                    <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a>{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}</p>
+
+                {% block blog_post_list_post_title %}
+                {% editable blog_post.title %}
+                <h3><a href="{{ blog_post.get_absolute_url }}">{{ blog_post.title }}</a></h3>
+                {% endeditable %}
+                {% endblock %}
+
+                {% block blog_post_list_post_content %}
+                {% editable blog_post.content %}
+                {{ blog_post.description_from_content|truncatewords_html:20|safe }}
+                {% endeditable %}
+                {% endblock %}
+
+                <p><a class="btn btn-sm" href="{{ blog_post.get_absolute_url }}">Read more</a></p>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</div>
+
+<div class="text-center">
+{% pagination_for blog_posts %}
+</div>
+
+{% endblock %}
