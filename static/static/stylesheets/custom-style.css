@@ -229,3 +229,6 @@ body#body .nav > li > a:hover {
 	margin: auto;
 }
 }
+img {
+	width: 100%;
+}
