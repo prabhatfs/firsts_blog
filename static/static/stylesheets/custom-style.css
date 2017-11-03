@@ -5,6 +5,7 @@ body {
 h1,h2{color:#303030;}
 h3{color:#303030}
 :focus {
+	
 	outline: none;
 	border: none
 }
@@ -115,6 +116,7 @@ h2.section-title {
 	right: 15%;
 	background-color: #fff;
 }
+
 .feature-contents {
 	opacity: 0.4;
 	font-size: 13px;
@@ -134,6 +136,20 @@ h2.section-title {
 	margin: 0;
 	padding: 10px 0px;
 }
+.features-box h3 a{
+color:#000
+	}
+.features-box h6 a{
+	color:#000;
+	}	
+.features-box h6{
+	    opacity: 0.4;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.67;
+    letter-spacing: -0.6px;
+    color: rgb(0, 0, 0);
+	}	
 footer {
 	background-color: #141414;
 }

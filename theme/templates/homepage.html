@@ -161,7 +161,7 @@
                         {{ recent_post.0.title }}</a></h3>
                     </div>
                     </div>
-                <p class="feature-contents">{{ recent_post.0.description_from_content|truncatewords_html:20|safe }}</p>
+                <p class="feature-contents">{{ recent_post.0.description_from_content|striptags|truncatewords_html:20|safe }}</p>
                 </div>
                 {% endif %}
                 
@@ -187,7 +187,7 @@
                         {{ recent_post.1.title }}</a></h3>
                     </div>
                     </div>
-                <p class="feature-contents">{{ recent_post.1.description_from_content|truncatewords_html:10|safe }}</p>
+                <p class="feature-contents">{{ recent_post.1.description_from_content|striptags|truncatewords_html:10|safe }}</p>
             </div>
             {% endif %}
                     
@@ -216,7 +216,7 @@
                         {{ recent_post.2.title }}</a></h3>
                     </div>
                     </div>
-                <p class="feature-contents">{{ recent_post.2.description_from_content|truncatewords_html:10|safe }}</p>
+                <p class="feature-contents">{{ recent_post.2.description_from_content|striptags|truncatewords_html:10|safe }}</p>
             </div>
         {% endif %}
             
