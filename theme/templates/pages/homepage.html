@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="keywords" content="">
     <meta name="description" content="Home">
-    <title>Home | Firstsynch</title>
+    <title>{% block meta_title %}{% endblock %}{% if settings.SITE_TITLE %} | {{ settings.SITE_TITLE }}{% endif %}</title>
     <link rel="shortcut icon" href="/static/static/img/favicon.ico">
     <link rel="shortcut icon" href="assets/ico/favicon.ico/index.html">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png/index.html" %}"="">
@@ -18,10 +18,12 @@
     <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png/index.html" %}"="">
 
     
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="blog/feeds/rss/index.html">
-    <link rel="alternate" type="application/atom+xml" title="Atom" href="blog/feeds/atom/index.html">
-    
+    {% ifinstalled mezzanine.blog %}
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="{% url "blog_post_feed" "rss" %}">
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
+    {% endifinstalled %}
 
+    {% compress css %}
     
     <link rel="stylesheet" type="text/css" href="/static/static/lib/bootstrap3/dist/css/bootstrap.css">
     <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.css">
