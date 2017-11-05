@@ -1,22 +1,113 @@
-{% extends "pages/page.html" %}
+<!doctype html>
+<html lang="en">
+{% load pages_tags blog_tags keyword_tags mezzanine_tags i18n staticfiles theme_tags %}
+<!-- Mirrored from 127.0.0.1:8000/ by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 17 Dec 2013 19:01:52 GMT -->
+<head><meta http-equiv="content-type" content="text/html;charset=utf-8"><!-- /Added by HTTrack -->
 
-{% load static mezzanine_tags %}
 
-{% block extra_js %}
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="keywords" content="">
+    <meta name="description" content="Home">
+    <title>Home | Firstsynch</title>
+    <link rel="shortcut icon" href="/static/static/img/favicon.ico">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico/index.html">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png/index.html" %}"="">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png/index.html" %}"="">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png/index.html" %}"="">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png/index.html" %}"="">
+
+    
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="blog/feeds/rss/index.html">
+    <link rel="alternate" type="application/atom+xml" title="Atom" href="blog/feeds/atom/index.html">
+    
+
+    
+    <link rel="stylesheet" type="text/css" href="/static/static/lib/bootstrap3/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="/static/static/lib/fractionslider/css/fractionslider.css">
+    <link rel="stylesheet" href="/static/static/lib/prettyPhoto/css/prettyPhoto.css" type="text/css" media="screen" charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="/static/static/stylesheets/theme.css">
+    <link rel="stylesheet" type="text/css" href="/static/static/stylesheets/mezzatheme.css">
+    
+    
+
+    <link href="http://fonts.googleapis.com/css?family=Playball" rel="stylesheet" type="text/css">
+
+    
+    <script id="twitter-wjs" src="https://platform.twitter.com/widgets.js"></script><script src="/static/static/mezzanine/js/jquery-1.7.1.min.js"></script>
+    <script src="/static/static/lib/bootstrap3/dist/js/bootstrap.js"></script>
+    <script src="/static/static/js/bootstrap-extras.js"></script>
+    <script src="/static/static/javascripts/site.js" type="text/javascript"></script>
+    <script src="/static/static/lib/fractionslider/jquery.fractionslider.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/static/static/lib/prettyPhoto/js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
+      $(document).ready(function(){
+        $("a[rel^='prettyPhoto']").prettyPhoto();
+      });
+    </script>
+    
     <script type="text/javascript">
         jQuery(window).load(function(){
           //if($('.slider').visible()) {
               //$('.slider').fractionSlider({controls:true,pager:true});
               $('.slider').fractionSlider();
+
+
           //}
         });
     </script>
-{% endblock %}
 
-{% block ie9_body_class %}{% block ie8_body_class %}{% block ie7_body_class %}{% block body_class %}index{% endblock %}{% endblock %}{% endblock %}{% endblock %}
+    
 
-{% block all_content %}
-    {% if page.homepage.slides.all %}
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    
+
+
+
+
+
+<script type="text/javascript" charset="utf-8" async src="https://platform.twitter.com/js/timeline.6acaf768813ce8930b56fccda57f51f5.js"></script>
+<link href="/static/static/stylesheets/custom-style.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript">
+        jQuery(window).load(function(){
+          //if($('.slider').visible()) {
+              //$('.slider').fractionSlider({controls:true,pager:true});
+              $('.jumbotron').css('background-image', {{ MEDIA_URL }}{% thumbnail page.homepage.top_image.0.image 0 0%};
+          //}
+        });
+    </script>
+</head>
+<!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <body class="ie ie7 index"> <![endif]-->
+<!--[if IE 8 ]> <body class="ie ie8 index"> <![endif]-->
+<!--[if IE 9 ]> <body class="ie ie9 index"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> 
+
+
+<body id="body" class="index">
+<!--<![endif]-->
+    <div class="navbar navbar-fixed-top">
+
+        <div class="container">
+            <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                      <i class="fa fa-align-justify"></i>
+                  </button>
+                  <a class="navbar-brand" href="/"><img src="/static/static/images/logo.png" class="logo"></a>
+            </div>
+            <!--/.navbar-collapse -->
+        </div>
+    </div>
+    <div class="content">
+
+    
+    
         <style>
         .slide * {
         position:absolute;
@@ -24,118 +115,124 @@
         left: -10000px;
         }
         </style>
-        <div class="jumbotron{% if request.user.has_site_permission %} theme-help" data-toggle="tooltip" data-placement="top" data-trigger="manual" title="Click admin to the upper left and scroll down to slides to edit these."{% else %}"{% endif %}>
-            {% for slide in page.homepage.slides.all %}
-            {% if forloop.first %}
-            <div class="mobile-jumbotron visible-xs">
-                <div class="container">
-                    <h1>{{ slide.heading }}</h1>
-                </div>
-                <img src="{{ MEDIA_URL }}{% thumbnail slide.image 670 0 %}" class="img-responsive">
-                                        
-                <div class="container">
-                <p>{{ slide.subheading }}</p>
-                {% if slide.button_link %}
-                <p>
-                    <a class="btn btn-warning btn-lg" href="{{ slide.button_link }}">
-                        {{ slide.button_text }}
-                        {% if slide.button_icon %} <i class="fa {{ slide.button_icon }}" style="margin-left: .5em;"></i>{% endif %}
-                    </a>
-                </p>
-                {% endif %}
-                </div>
-            </div>
-            <div class="slider hidden-xs" style="margin:0px auto;">
-            {% endif %}
-                {% if slide.image_alignment == 'RI' %}
-                <div class="slide slide-img-right">
-                    <div data-position="60,0" data-in="left" data-out="fade" data-time="500" style="width:100%">
-                            <img src="{{ MEDIA_URL }}{% thumbnail slide.image 640 363 %}" class="main-image" data-position="60,570" data-in="left" data-out="fade" data-time="500" style="">
-                    </div>
-                    <div class="h1wrap" data-position="60,0" data-out="fade" data-in="fade" data-delay="200" style="margin-left: 60px; width: 100%">
-                            <h1 style="max-width: 400px;">{{ slide.heading }}</h1>
-                    </div>
-                                                                    
-                    <p data-position="180,60" data-out="fade" style="width: 500px;" data-delay="200" data-in="fade">{{ slide.subheading }}</p>
-                    {% if slide.button_link %}
-                    <a data-position="360,60" data-in="fade" data-out="fade" data-delay="350" class="btn btn-warning btn-lg" href="{{ slide.button_link }}">
-                        {{ slide.button_text }}
-                        {% if slide.button_icon %} <i class="fa {{ slide.button_icon }}" style="margin-left: .5em;"></i>{% endif %}
-                    </a>
-                    {% endif %}
-                    
-                </div>
-                {% elif slide.image_alignment == 'NO' %}
-                <div class="slide slide-img-none">
-                    <div class="h1wrap" style="width: 100%; text-align: center;" data-position="180,0" data-out="fade" data-in="fade" data-delay="100">
-                        <h1><span style="color:#fff; font-weight:100;">{{ slide.heading }}</h1>
-                        <p style="width: 100%; text-align: center;" data-position="140,0" data-out="fade" style="color: #fff; opacity: .5; white-space: nowrap;" data-delay="20" data-in="left">
-                            {{ slide.subheading }}
-                            {% if slide.button_link %}<br>
-                            <a class="btn btn-warning btn-large" href="{{ slide.button_link }}">
-                                {% if slide.button_text %}{{ slide.button_text }}{% endif %}
-                                {% if slide.button_icon %} <i class="fa {{ slide.button_icon }}" style="margin-left: .5em;"></i>{% endif %}
-                            </a>
-                            {% endif %}
-                        </p>
-                    </div>
-                    <p style="width: 100%; text-align: center;" data-position="230,0" data-out="fade" style="color: #fff; opacity: .5; white-space: nowrap;" data-delay="20" data-in="left">
-                        {{ slide.subheading }}
-                        {% if slide.button_link %}<br>
-                            <a class="btn btn-warning btn-large" href="{{ slide.button_link }}">
-                                {% if slide.button_text %}{{ slide.button_text }}{% endif %}
-                                {% if slide.button_icon %} <i class="fa {{ slide.button_icon }}" style="margin-left: .5em;"></i>{% endif %}
-                            </a>
-                        {% endif %}
-                    </p>
-                    <div data-delay="200"></div>
-                </div>
-                {% else %}
-                <div class="slide slide-img-left">
-                    <img data-position="40,20" src="{{ MEDIA_URL }}{% thumbnail slide.image 600 363 %}" class="main-image" data-in="left" data-out="fade" data-time="1000" style="max-height: 450px; max-width: 950px;">
+        <div class="jumbotron">
 
-                    <div class="contentwrap" data-position="110,620" data-out="fade" data-in="fade" data-delay="200">
-                            <h3 style="">{{ slide.heading }}</h3>
-                            <p style="display: block;">{{ slide.subheading }}</p>
-                            {% if slide.button_link %}
-                            <a class="btn btn-warning btn-large" href="{{ slide.button_link }}">
-                                {% if slide.button_text %}{{ slide.button_text }}{% endif %}
-                                {% if slide.button_icon %} <i class="fa {{ slide.button_icon }}" style="margin-left: .5em;"></i>{% endif %}
-                            </a>
-                            {% endif %}
-                    </div>
-                </div>
-                {% endif %}
-            {% if forloop.last %}
-            </div>
-            {% endif %}
-            {% endfor %}
             <div class="clearfix"></div>
         </div>
-    {% endif %}
+    
+<div class="navbar-collapse collapse">
+                
+<ul class="nav navbar-nav">
+    <li class=" active">
+    <a href="">
+            Show All
+            
+        </a></li>
+{% blog_categories as categories %}
+{% if categories %}
+
+
+{% for category in categories %}
+
+    <li class="dropdown"><a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a></li>
+{% endfor %}
+{% endif %}
+</ul>
+
+            </div>
 
         <div class="container">
-            {% if page.homepage.features.all %}
-            <h2 class="section-title">
-                {% editable page.homepage.features_heading %}{{ page.homepage.features_heading }}{% endeditable %}
-            </h2>
-            <div class="row{% if request.user.has_site_permission %} theme-help" data-toggle="tooltip" data-placement="top" data-trigger="manual" title="Click admin to the upper left and scroll down to features to edit these."{% else %}"{% endif %}>
-                {% for feature in page.homepage.features.all %}
-                <div class="col-md-4 feature">
-                    <img src="{{ MEDIA_URL }}{% thumbnail feature.image 720 480 %}" class="img-responsive">
-                    {% editable feature.heading feature.subheading %}
-                    <h3>{{ feature.heading }}</h3>
-                    <p>{{ feature.subheading }}</p>
-                    {% endeditable %}
+            
+<h2 class="section-title">All Blogs</h2>
+{% blog_recent_posts 10 as recent_post %}
+{% if recent_post %}
+            <div class="row">
+                <section class="page-section">
+                {% if recent_post|length > 0 %}
+                <div class="col-md-8 feature">
+                <div class="feature-cont-img-box">
+                    <img src="{{ MEDIA_URL }}{{ recent_post.0.featured_image }}" class="img-responsive">
+                    <div class="features-box">
+                    <!--h3><a href="{{ recent_post.get_absolute_url }}">
+                        {{ recent_post.title }}</a></h3-->
+                    {% with recent_post.0.categories.all as categories %}
+                    {% if categories %}
+                    {% for category in categories|slice:":1" %}
+                    <h6>
+                    <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a> 
+                    | {% blocktrans with sometime=recent_post.0..publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}
+                    </h6>
+                    {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                    <h3><a href="{{ recent_post.0.get_absolute_url }}">
+                        {{ recent_post.0.title }}</a></h3>
+                    </div>
+                    </div>
+                <p class="feature-contents">{{ recent_post.0.description_from_content|striptags|truncatewords_html:20|safe }}</p>
                 </div>
-                {% if forloop.counter|divisibleby:3 and not forloop.last %}
-            </div>
-            <div class="row" style="margin-top: 20px;">
                 {% endif %}
-                {% endfor %}
+                
+                <div class="col-md-4">
+                {% if recent_post|length > 1 %}
+                <div class="col-md-12 feature">
+                <div class="feature-cont-img-box">
+                    <img src="{{ MEDIA_URL }}{{ recent_post.1.featured_image }}" class="img-responsive">
+                     <div class="features-box">
+                    <!--h3><a href="{{ recent_post.get_absolute_url }}">
+                        {{ recent_post.title }}</a></h3-->
+                    {% with recent_post.1.categories.all as categories %}
+                    {% if categories %}
+                    {% for category in categories|slice:":1" %}
+                    <h6>
+                    <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a> | {% blocktrans with sometime=recent_post.1.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}
+                    </h6>
+                    {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                    <h3><a href="{{ recent_post.1.get_absolute_url }}">
+                        {{ recent_post.1.title }}</a></h3>
+                    </div>
+                    </div>
+                <p class="feature-contents">{{ recent_post.1.description_from_content|striptags|truncatewords_html:10|safe }}</p>
             </div>
             {% endif %}
+                    
+                
+                
+            {% if recent_post|length > 2 %}
+                <div class="col-md-12 feature">
+                <div class="feature-cont-img-box">
+                    <img src="{{ MEDIA_URL }}{{ recent_post.2.featured_image }}" class="img-responsive">
+                     <div class="features-box">
+                    <!--h3><a href="{{ recent_post.get_absolute_url }}">
+                        {{ recent_post.title }}</a></h3-->
+                    {% with recent_post.2.categories.all as categories %}
+                    {% if categories %}
+                    {% for category in categories|slice:":1" %}
+                    <h6>
+                    <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a> | {% blocktrans with sometime=recent_post.2.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}
+                    </h6>
+                    {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
 
+                    
+                    <h3><a href="{{ recent_post.2.get_absolute_url }}">
+                        {{ recent_post.2.title }}</a></h3>
+                    </div>
+                    </div>
+                <p class="feature-contents">{{ recent_post.2.description_from_content|striptags|truncatewords_html:10|safe }}</p>
+            </div>
+        {% endif %}
+            
+            </div>
+</section>
+{% endif %}
+             <section class="page-section">
             {% if page.homepage.customers.all %}
             <h2 class="section-title">{% editable page.homepage.customers_heading %}{{ page.homepage.customers_heading }}{% endeditable %}</h2>
             <div class="row customers{% if request.user.has_site_permission %} theme-help" data-toggle="tooltip" data-placement="top" data-trigger="manual" title="Click admin to the upper left and scroll down to customers to edit these."{% else %}"{% endif %}>
@@ -152,7 +249,10 @@
                 {% endfor %}
             </div>
             {% endif %}
-
+            
+</section>
+ <section class="page-section">
+            
             {% if page.homepage.testimonials.all %}
             <h2 class="section-title">{% editable page.homepage.testimonials_heading %}{{ page.homepage.testimonials_heading }}{% endeditable %}</h2>
             <div class="row customer-comments{% if request.user.has_site_permission %} theme-help" data-toggle="tooltip" data-placement="top" data-trigger="manual" title="Click admin to the upper left and scroll down to testimonials to edit these."{% else %}"{% endif %}>
@@ -169,6 +269,100 @@
                 {% endfor %}
             </div>
             {% endif %}
+            </section>
+            
 
         </div>
-{% endblock %}
+ </div>
+        <div class="footer-spacer"></div>
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        
+                        <h4>About us</h4>
+                        <p>Rail is a spacious, responsive, full featured theme for Mezzanine. It includes styling for the default Mezzanine as well as Portoflio and FAQ pages. Add Rail to your site today!</p>
+                        
+                    </div>
+                    <div class="col-md-2">
+                        
+                        <h4>Useful links</h4>
+                        
+                        <ul class="list-unstyled">
+                            
+
+{% page_menu "pages/menus/flat_footer.html" %}
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        
+                        <h4>Follow us on Twitter</h4>
+                                                <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" class="twitter-timeline twitter-timeline-rendered" style="position: static; visibility: visible; display: inline-block; width: 520px; height: 250px; padding: 0px; border: none; max-width: 100%; min-width: 180px; margin-top: 0px; margin-bottom: 0px; min-height: 200px;" data-widget-id="379745319400902656" title="Twitter Timeline"></iframe>
+                        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+                        
+                    </div>
+                    <div class="col-md-3">
+                        
+                        
+                        <h4>From the Blog</h4>
+                        
+                        
+                        <ul class="list-unstyled">
+                            
+                            <li><a href="blog/mezzatheme-a-themes-marketplace/index.html">MEZZaTHEME, a themes marketplace</a></li>
+                            
+                            <li><a href="blog/run-wild/index.html">Run Wild</a></li>
+                            
+                            <li><a href="blog/mezzanine-themes/index.html">Mezzanine Themes</a></li>
+                            
+                            <li><a href="blog/rhaspberries-are-quite-tasty/index.html">Rhaspberries are quite tasty</a></li>
+                            
+                            <li><a href="blog/water-drops/index.html">Water Drops</a></li>
+                            
+                            <li><a href="blog/random-lorem-ipsum/index.html">Random Lorem Ipsum</a></li>
+                            
+                        </ul>
+                        
+                    </div>
+                </div>
+
+                <div class="bottom-footer">
+                    <p class="pull-right" style="line-height: 3em; font-size: .7em; margin-bottom: 0em;">&copy; {{ settings.SITE_TITLE }} {% now "Y" %} | Made with <a href="http://mezzathe.me" target="_blank">MEZZaTHEME</a></p>
+                    <div class="social">
+                        {% if settings.SOCIAL_LINK_FACEBOOK %}
+                        <a target="_blank" href="{{ settings.SOCIAL_LINK_FACEBOOK }}"><i class="fa fa-facebook"></i></a>
+                        {% endif %}
+                        {% if settings.SOCIAL_LINK_TWITTER %}
+                        <a target="_blank" href="{{ settings.SOCIAL_LINK_TWITTER }}"><i class="fa fa-twitter"></i></a>
+                        {% endif %}
+                        {% if settings.SOCIAL_LINK_GOOGLE %}
+                        <a target="_blank" href="{{ settings.SOCIAL_LINK_GOOGLE }}"><i class="fa fa-google-plus"></i></a>
+                        {% endif %}
+                        {% if settings.SOCIAL_LINK_LINKEDIN %}
+                        <a target="_blank" href="{{ settings.SOCIAL_LINK_LINKEDIN }}"><i class="fa fa-linkedin"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </footer>
+                
+   <!-- end content -->
+
+
+
+
+
+
+
+
+<script>
+
+</script>
+
+
+
+
+<!-- Mirrored from 127.0.0.1:8000/ by HTTrack Website Copier/3.x [XR&CO'2013], Tue, 17 Dec 2013 19:02:40 GMT -->
+
+<iframe id="rufous-sandbox" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: none;" title="Twitter analytics iframe"></iframe></body></html>

@@ -20,6 +20,11 @@ from django.utils.translation import ugettext_lazy as _
 # Controls the ordering and grouping of the admin menu.
 #
 
+SITE_TITLE = "FirstSynch"
+
+SOCIAL_LINK_FACEBOOK = "Firstsynch"
+SOCIAL_LINK_TWITTER = "Firstsynch"
+
 ADMIN_MENU_ORDER = (
     ("Content", ("pages.Page", "blog.BlogPost", "blog.BlogCategory",
        "generic.ThreadedComment", (_("Media Library"), "media-library"),)),

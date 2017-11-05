@@ -10,10 +10,14 @@ h3{color:#303030}
 	border: none
 }
 body#body .navbar {
-	background-color: transparent
+	background-color: transparent;
 }
 .navbar-fixed-top {
 	position: fixed
+}
+.navbar-fixed-top-bg{
+	position: fixed;
+	background-color: #fff;
 }
 .navbar-brand {
 	background-color: #fff;
@@ -231,4 +235,8 @@ body#body .nav > li > a:hover {
 }
 img {
 	width: 100%;
+}
+
+content-margin {
+	margin-top: 109px
 }

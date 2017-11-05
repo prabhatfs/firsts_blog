@@ -16,6 +16,7 @@ body{
 	background: linear-gradient(to right, #eee8ee 2%, #dbe7f0 100%);
  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eee8ee', endColorstr='#dbe7f0', GradientType=1 );
 }
+
 .slider {
 	background: none;
 	-webkit-box-shadow: none;
@@ -105,3 +106,8 @@ body.index .nav > li.active a {
 		footer p{color:#fff}	
 		footer a{color:#fff; opacity:0.78}
 		footer a:hover{color:#fff; opacity:1}
+
+.content {
+	margin-top: 109px;
+}
+

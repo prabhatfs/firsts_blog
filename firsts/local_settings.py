@@ -7,6 +7,9 @@ DEBUG = True
 SECRET_KEY = "nfhp5*dc09(t1v-qi&@!kh2uf5d#_-%&(awn&70xr2qc@7_63e"
 NEVERCACHE_KEY = "e2w-$amxziy!zhv_08!6qz61m_ww+dlt(%i(hy)yfas591s$t6"
 
+SOCIAL_LINK_FACEBOOK = "firstsynch"
+SOCIAL_LINK_TWITTER = "firstsynch"
+
 
 
 ###################
