@@ -103,14 +103,14 @@
 {% with blog_post.get_previous_by_publish_date as previous %}
 {% if previous %}
 <li class="previous">
-    <a class="btn btn-primary btn-large" href="{{ previous.get_absolute_url }}">&larr; {{ previous }}</a>
+    <a class="" href="{{ previous.get_absolute_url }}">&larr; {{ previous }}</a>
 </li>
 {% endif %}
 {% endwith %}
 {% with blog_post.get_next_by_publish_date as next %}
 {% if next %}
 <li class="next">
-    <a class="btn btn-primary btn-large" href="{{ next.get_absolute_url }}">{{ next }} &rarr;</a>
+    <a class="" href="{{ next.get_absolute_url }}">{{ next }} &rarr;</a>
 </li>
 {% endif %}
 {% endwith %}

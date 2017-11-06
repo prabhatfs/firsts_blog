@@ -241,17 +241,34 @@ img {
 	margin-top: 109px
 }
 
-.pager li > a {
-background-color: #ffffff;
-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.2);
-border: solid 2px #0d0d0d;
-font-size: 11px;
-font-weight: bold;
-letter-spacing: -0.3px;
-text-align: center;
-color: #303030;
--webkit-border-radius: 30px;
--moz-border-radius: 30px;
-border-radius: 30px;
-padding: 10px 15px;	
+
+
+.pager li > a, .comment-btn {
+	padding: 10px 15px;
+	border: 2px solid #0d0d0d;
+	border-radius: 30px;
+	font-size: 11px;
+	margin-left: 10px;
+	margin-top: -6px;
+	-webkit-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.2);
+	box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.2);
+	border-radius: 30px;
+	background-color: #ffffff;
+	font-weight: bold;
+	letter-spacing: -0.3px;
+	text-align: center;
+    color: #303030;
+}
+
+.comment-btn {
+	font-size: 14px;
+	border-color: #00b58e;
+	background-color: #00b58e;
+	color: #fff;
+}
+.pager li > a:hover, .comment-btn:hover {
+	border-color: #00b58e;
+	background-color: #00b58e;
+	color: #fff;
 }
