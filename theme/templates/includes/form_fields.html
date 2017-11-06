@@ -19,8 +19,8 @@
 {% else %}
 <div class="form-group input_{{ field.id_for_label }} {{ field.field.type }}
     {% if field.errors %} error{% endif %}">
-    <label class="control-label" for="{{ field.auto_id }}">
-        {{ field.label }}{% if field.field.required %}{{ "*" }}{% endif %}
+    <label class="control-label text-uppercase" for="{{ field.auto_id }}">
+        {{ field.label }}{% if field.field.required %}<sup class="asterisk">*</sup>{% endif %}
     </label>
 
         {{ field }}
