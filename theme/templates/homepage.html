@@ -63,9 +63,6 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
-    
-
-
 
 
 
@@ -85,9 +82,9 @@
                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                       <i class="fa fa-align-justify"></i>
                   </button>
-                  <a class="navbar-brand" href="/"><img src="/static/static/images/logo.png" class="logo"></a>
+                  <a class="navbar-brand" href="/"><span class="logo"></span></a>
             </div>
-            <!--/.navbar-collapse -->
+            <!--/.navbar-collapse /static/static/images/logo.png -->
         </div>
     </div>
     <div class="content">
@@ -265,6 +262,7 @@
 
         </div>
  </div>
+ {% if settings.FOOTER_REQUIRED %}
         <div class="footer-spacer"></div>
         <footer>
             <div class="container">
@@ -337,7 +335,7 @@
                 </div>
             </div>
         </footer>
-                
+   {% endif %}            
    <!-- end content -->
 
 

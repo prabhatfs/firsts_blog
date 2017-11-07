@@ -23,7 +23,6 @@
     <link rel="alternate" type="application/atom+xml" title="Atom" href="{% url "blog_post_feed" "atom" %}">
     {% endifinstalled %}
 
-    {% compress css %}
     
     <link rel="stylesheet" type="text/css" href="/static/static/lib/bootstrap3/dist/css/bootstrap.css">
     <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.css">
@@ -76,14 +75,6 @@
 <script type="text/javascript" charset="utf-8" async src="https://platform.twitter.com/js/timeline.6acaf768813ce8930b56fccda57f51f5.js"></script>
 <link href="/static/static/stylesheets/custom-style.css" rel="stylesheet" type="text/css">
 
-    <script type="text/javascript">
-        jQuery(window).load(function(){
-          //if($('.slider').visible()) {
-              //$('.slider').fractionSlider({controls:true,pager:true});
-              $('.jumbotron').css('background-image', {{ MEDIA_URL }}{% thumbnail page.homepage.top_image.0.image 0 0%};
-          //}
-        });
-    </script>
 </head>
 <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
 <!--[if IE 7 ]> <body class="ie ie7 index"> <![endif]-->
@@ -94,14 +85,14 @@
 
 <body id="body" class="index">
 <!--<![endif]-->
-    <div class="navbar navbar-fixed-top">
+    <div class="navbar navbar-fixed-top" style="margin-top: 30px">
 
         <div class="container">
             <div class="navbar-header">
                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                       <i class="fa fa-align-justify"></i>
                   </button>
-                  <a class="navbar-brand" href="/"><img src="/static/static/images/logo.png" class="logo"></a>
+                  <a class="navbar-brand" href="/"><span class="logo"></span></a>
             </div>
             <!--/.navbar-collapse -->
         </div>
@@ -117,10 +108,21 @@
         left: -10000px;
         }
         </style>
-        <div class="jumbotron">
+        {% if page.homepage.top_image.all %}
+        {% for top_i in page.homepage.top_image.all %}
+        <div class="jumbotron-img" style="background: url({{ MEDIA_URL }}{{ top_i.image }}) no-repeat;
+                background-size: 100% 100%">
 
             <div class="clearfix"></div>
         </div>
+        {% endfor %}
+        {% else %}
+        <div class="jumbotron" >
+
+            <div class="clearfix"></div>
+        </div>
+
+        {% endif %}
     
 <div class="navbar-collapse collapse">
                 
@@ -276,6 +278,8 @@
 
         </div>
  </div>
+
+ {% if not settings.FOOTER_REQUIRED %}
         <div class="footer-spacer"></div>
         <footer>
             <div class="container">
@@ -350,6 +354,8 @@
         </footer>
                 
    <!-- end content -->
+
+{% endif %}
 
 
 

@@ -42,10 +42,10 @@
             {% if request.user.is_staff %}
                 {% if comment.url %}
                 <a class="pull-left" href="{{ comment.url }}">
-                    <img style="width: 64px; height: 64px;" src="{% gravatar_url comment.email size=128 %}">
+                    <img style="width: 10px; height: 10px;" src="{% gravatar_url comment.email size=128 %}">
                 </a>
                 {% else %}
-                <img style="width: 64px; height: 64px;" class="pull-left" src="{% gravatar_url comment.email size=128 %}">
+                <img style="width: 10px; height: 10px;" class="pull-left" src="{% gravatar_url comment.email size=128 %}">
                 {% endif %}
 
                 <div class="media-body">

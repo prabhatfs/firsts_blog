@@ -93,6 +93,7 @@ USE_MODELTRANSLATION = False
 
 COMMENTS_USE_RATINGS = False
 
+FOOTER_REQUIRED = False
 ########################
 # MAIN DJANGO SETTINGS #
 ########################

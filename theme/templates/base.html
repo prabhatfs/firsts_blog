@@ -81,7 +81,7 @@
                   <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                       <i class="fa fa-align-justify"></i>
                   </button>
-                  <a class="navbar-brand" href="/"><img src="/static/static/images/logo.png" class="logo"></a>
+                  <a class="navbar-brand" href="/"><span class="logo"></span></a>
             </div>
             <div class="navbar-collapse collapse">
                 {% page_menu "pages/menus/dropdown.html" %}
@@ -108,6 +108,8 @@
             </div>
         </div>
     {% endblock %}
+    {% if settings.FOOTER_REQUIRED %}
+    
         <div class="footer-spacer"></div>
         <footer>
             <div class="container">
@@ -156,7 +158,7 @@
                 </div>
             </div>
         </footer>
-                
+        {% endif %}        
     </div><!-- end content -->
 
 {% include "includes/footer_scripts.html" %}
