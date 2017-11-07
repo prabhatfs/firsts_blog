@@ -94,6 +94,8 @@ USE_MODELTRANSLATION = False
 COMMENTS_USE_RATINGS = False
 
 FOOTER_REQUIRED = False
+
+COMMENTS_DISQUS_SHORTNAME = "firstsblog"
 ########################
 # MAIN DJANGO SETTINGS #
 ########################
