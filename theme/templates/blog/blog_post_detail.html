@@ -106,12 +106,41 @@
 {% block blog_post_detail_related_posts %}
 {% if blog_post.related_posts.all %}
 <div id="related-posts">
+
 <h3>{% trans 'Related posts' %}</h3>
-<ul class="unstyled">
-{% for post in blog_post.related_posts.all %}
-     <li><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></li>
-{% endfor %}
-</ul>
+{% if blog_post.related_posts.all %}
+            <div class="row">
+                <div class="col-md-12">
+                {% for post in blog_post.related_posts.all %}
+
+                <div class="col-md-4 feature" >
+                <div class="feature-cont-img-box">
+                    <img src="{{ MEDIA_URL }}{{ post.featured_image }}" class="img-responsive">
+                     <div class="features-box">
+                    <!--h3><a href="{{ recent_post.get_absolute_url }}">
+                        {{ recent_post.title }}</a></h3-->
+                    {% with post.categories.all as categories %}
+                    {% if categories %}
+                    {% for category in categories|slice:":1" %}
+                    <h6>
+                    <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a> | {% blocktrans with sometime=post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}
+                    </h6>
+                    {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                    <h3><a href="{{ post.get_absolute_url }}">
+                        {{ post.title }}</a></h3>
+                    </div>
+                    </div>
+                <p class="feature-contents">{{ post.description_from_content|striptags|truncatewords_html:10|safe }}</p>
+            </div>
+            {% endfor %}
+                    
+            </div>
+        </div>
+{% endif %}
+
 </div>
 {% endif %}
 {% endblock %}
@@ -121,3 +150,4 @@
 {% endblock %}
 
 {% endblock %}
+

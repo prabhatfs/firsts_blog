@@ -360,6 +360,12 @@ sup {
     opacity: 0.6;
 	}
 
+.timespan{
+	color: #000;
+    font-weight: bold;
+    font-size: 15px;
+    opacity: 0.6;
+	}
 
 .recent-posts li a span:hover{
     opacity: 1;

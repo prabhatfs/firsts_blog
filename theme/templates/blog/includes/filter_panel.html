@@ -46,19 +46,3 @@
 </ul>
 {% endif %}
 {% endblock %}
-
-{% block blog_months %}
-{% blog_months as months %}
-{% if months %}
-<h3>{% trans "Archive" %}</h3>
-{% for month in months %}
-    {% ifchanged month.date.year %}
-        {% if not forloop.first %}</ul>{% endif %}
-        <h6>{{ month.date.year }}</h6><ul class="icons">
-    {% endifchanged %}
-    <li><i class="fa fa-angle-right"></i><a href="{% url "blog_post_list_month" year=month.date.year month=month.date.month %}"
-        >{{ month.date|date:"F" }}</a> ({{ month.post_count }})</li>
-{% endfor %}
-</ul>
-{% endif %}
-{% endblock %}

@@ -5,18 +5,11 @@
     <div class="media" id="comment-{{ comment.id }}">
         {% editable comment.is_public comment.is_removed %}
         {% if not comment.is_removed and comment.is_public %}
-
-            {% if comment.url %}
-            <a class="pull-left" href="{{ comment.url }}">
-                <img style="width: 64px; height: 64px;" src="{% gravatar_url comment.email size=128 %}">
-            </a>
-            {% else %}
-            <img style="width: 64px; height: 64px;" class="pull-left" src="{% gravatar_url comment.email size=128 %}">
-            {% endif %}
-
             <div class="media-body">
-                <h4 class="media-heading">{{ comment.user_name }}</h4>
-                <span class="timespan">{% blocktrans with sometime=comment.submit_date|timesince %}{{ sometime }} ago{% endblocktrans %}</span>
+                <h4 class="media-heading">{{ comment.user_name }}
+                <span class="timespan" style="float:right;">{% blocktrans with sometime=comment.submit_date|timesince %}{{ sometime }} ago{% endblocktrans %}</span>
+                </h4>
+
                 <p>{{ comment.comment|comment_filter }}</p>
 
                 <a href="{{ request.path }}#comment-{{ comment.id }}">{% trans "Link" %}</a> /
