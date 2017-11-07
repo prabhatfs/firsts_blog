@@ -5,7 +5,6 @@
 {% if recent_posts %}
 <h3>{% trans "Recent Posts" %}</h3>
 <ul class="icons recent-posts">
-<li class="post-border"></li>
 {% for recent_post in recent_posts %}
 <li class="post-border"><a href="{{ recent_post.get_absolute_url }}"
     >{% if settings.BLOG_USE_FEATURED_IMAGE and recent_post.featured_image %}

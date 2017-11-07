@@ -348,6 +348,11 @@ sup {
 	height: 50px;
 	display: block;
 } 
+.recent-posts >li:first-child {
+	border-bottom: 1px solid #65efd1;
+	border-top: 1px solid #65efd1;
+	padding: 10px 0;
+}
 
 .post-border {
 	border-bottom: 1px solid #65efd1;
