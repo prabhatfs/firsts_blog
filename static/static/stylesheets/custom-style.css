@@ -7,6 +7,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
     font-family: 'Open Sans', sans-serif;
 }
 
+p{font-size:14px; font-weight:400; line-height:24px;}
 h1,h2{color:#303030;}
 h3{color:#303030}
 :focus {
@@ -221,7 +222,7 @@ body#body .nav > li > a:hover {
 		background-color: #ffffff;
     box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.2);
     border: solid 2px #0d0d0d;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: bold;
     letter-spacing: -0.3px;
     text-align: center;
@@ -231,6 +232,11 @@ body#body .nav > li > a:hover {
 	border-radius: 30px;
 	padding:10px 15px;
 		}
+.btn:hover{
+	    border-color: #00b58e;
+    background: #00b58e;
+	color:#fff;
+	}
  @media (min-width: 768px) {
 .navbar-collapse.collapse {
 	text-align: center;
@@ -381,12 +387,14 @@ sup {
 }
 
 .category_btn {
-	padding: 5px 5px;
+	padding: 3px 15px;
+	text-transform:uppercase;
+	display:inline-block;
 	border: 2px solid #0d0d0d;
 	border-radius: 30px;
-	font-size: 11px;
-	margin-left: 10px;
-	margin-top: -6px;
+	font-size: 12px;
+	margin-left: 0px;
+	margin-top: 6px;
 	-webkit-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.2);
 	-moz-box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.2);
 	box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.2);
@@ -397,3 +405,21 @@ sup {
 	text-align: center;
     color: #303030;
 }
+.sidebar{
+	background-color:#f7f7f7;
+	padding-top:0;
+	
+    -webkit-box-shadow: 0px 0 15px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 0 15px rgba(0,0,0,0.2);
+    box-shadow: 0px 0 15px rgba(0,0,0,0.2);
+	}
+.sidebar h3{
+	margin:0;
+	 text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 800 !important;
+    line-height: 1.5;
+    letter-spacing: -0.4px;
+    color: #303030;
+
+	}	
