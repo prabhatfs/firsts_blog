@@ -61,6 +61,7 @@
     {% endif %}
 {% endif %}
 <div id="blog-posts">
+{% if blog_posts|length %}
 {% for blog_post in blog_posts.object_list %}
     <div class="blog-post row">
         {% if settings.BLOG_USE_FEATURED_IMAGE and blog_post.featured_image %}
@@ -102,6 +103,9 @@
         </div>
     </div>
 {% endfor %}
+{% else %}
+<h3>Currently, No blog for this.</h3>
+{% endif %}
 </div>
 
 <div class="text-center">
