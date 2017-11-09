@@ -54,6 +54,11 @@ PAGE_MENU_TEMPLATES = (
     (3, _("Footer"), "pages/menus/footer.html"),
 )
 
+ACCOUNTS_PROFILE_FORM_EXCLUDE_FIELDS = (
+    "first_name",
+    "username"
+)
+
 # A sequence of fields that will be injected into Mezzanine's (or any
 # library's) models. Each item in the sequence is a four item sequence.
 # The first two items are the dotted path to the model and its field
@@ -85,7 +90,7 @@ PAGE_MENU_TEMPLATES = (
 
 # Setting to turn on featured images for blog posts. Defaults to False.
 #
-# BLOG_USE_FEATURED_IMAGE = True
+BLOG_USE_FEATURED_IMAGE = True
 
 # If True, the django-modeltranslation will be added to the
 # INSTALLED_APPS setting.
@@ -259,7 +264,7 @@ INSTALLED_APPS = (
     "mezzanine.twitter",
     #"tinymezzce4",
     #"mezzanine_pagedown",
-    # "mezzanine.accounts",
+    "mezzanine.accounts",
     # "mezzanine.mobile",
 )
 

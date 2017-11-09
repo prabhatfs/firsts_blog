@@ -5,6 +5,7 @@ from mezzanine.core.admin import TabularDynamicInlineAdmin
 from mezzanine.utils.admin import SingletonAdmin
 from mezzanine.pages.admin import PageAdmin
 
+
 from .models import (SiteConfiguration,
                     HomePage, TopImage, Slide, Feature, Customer, Testimonial,
                     FAQPage, FAQ,
@@ -61,6 +62,7 @@ class PortfolioItemAdmin(PageAdmin):
     inlines = (PortfolioItemImageInline,)
 
 
+#admin.site.register(User, UserAdmin)
 admin.site.register(Portfolio, PageAdmin)
 admin.site.register(PortfolioItem, PortfolioItemAdmin)
 admin.site.register(PortfolioItemCategory)

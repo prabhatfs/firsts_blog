@@ -7,6 +7,7 @@ from mezzanine.core.models import RichText, Orderable, Slugged, SiteRelated
 from mezzanine.pages.models import Page
 from mezzanine.utils.models import upload_to
 
+from django.contrib.auth.models import AbstractUser
 
 class SiteConfiguration(SiteRelated):
     '''

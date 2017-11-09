@@ -161,7 +161,10 @@
         </footer>
         {% endif %}        
     </div><!-- end content -->
-
+{% if settings.ACCOUNTS_ENABLED %}
+{% include "pages/menus/signup.html" %}
+{% include "pages/menus/login.html" %}
+{% endif %}
 {% include "includes/footer_scripts.html" %}
 
 </body>
