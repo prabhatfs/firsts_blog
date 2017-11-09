@@ -100,6 +100,8 @@ COMMENTS_USE_RATINGS = False
 
 FOOTER_REQUIRED = False
 
+ACCOUNTS_ENABLED = False
+
 ########################
 # MAIN DJANGO SETTINGS #
 ########################
@@ -264,7 +266,7 @@ INSTALLED_APPS = (
     "mezzanine.twitter",
     #"tinymezzce4",
     #"mezzanine_pagedown",
-    "mezzanine.accounts",
+    #"mezzanine.accounts",
     # "mezzanine.mobile",
 )
 
