@@ -149,10 +149,10 @@
             
 <h2 class="section-title">All Blogs</h2>
     <div class="row">
-            <section class="page-section">
+            
 {% blog_recent_posts 10 as recent_post %}
 {% if recent_post|length %}
-
+                <section class="page-section">
                 {% if recent_post|length > 0 %}
                 <div class="col-md-8 feature">
                 <div class="feature-cont-img-box">
