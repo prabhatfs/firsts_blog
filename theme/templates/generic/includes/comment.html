@@ -1,72 +1,18 @@
 {% load i18n mezzanine_tags comment_tags rating_tags %}
 
     {% for comment in comments_for_thread %}
-
-    <div class="media" id="comment-{{ comment.id }}">
-        {% editable comment.is_public comment.is_removed %}
-        {% if not comment.is_removed and comment.is_public %}
-            <div class="media-body">
-                <h4 class="media-heading">{{ comment.user_name }}
-                <span class="timespan" style="float:right;">{% blocktrans with sometime=comment.submit_date|timesince %}{{ sometime }} ago{% endblocktrans %}</span>
-                </h4>
-
-                <p>{{ comment.comment|comment_filter }}</p>
-
-                <a href="{{ request.path }}#comment-{{ comment.id }}">{% trans "Link" %}</a> /
-                <a href="#reply-{{ comment.id }}" class="reply">{% trans "Reply" %}</a>
-                <form class="reply-form" method="post" id="reply-{{ comment.id }}"
-                    action="{{ comment_url }}#reply-{{ comment.id }}"
-                    {% if replied_to != comment.id %}style="display:none;"{% endif %}>
-                    {% if replied_to == comment.id %}
-                    {% fields_for posted_comment_form %}
-                    {% else %}
-                    {% fields_for unposted_comment_form %}
-                    {% endif %}
-                    <input type="hidden" name="replied_to" value="{{ comment.id }}">
-                    <input class="btn btn-primary btn-large" type="submit" value="{% trans "Reply" %}">
-                </form>
-                {% if settings.COMMENTS_USE_RATINGS %}
-                {% rating_for comment %}
-                {% endif %}
-                {% comment_thread comment %}
+        <div class="media custom-media" id="comment-{{ comment.id }}">
+            <div class="media-left media-middle custom-media-left">
+                <img class="media-object-user img-circle" src="https://firstsynchvideos.s3.amazonaws.com/user_profile/basic_profile/profile_picture/2017/05/15/profileicon.png" alt="FirstSynch">
             </div>
-        {% else %}
-
-            {% if request.user.is_staff %}
-                {% if comment.url %}
-                <a class="pull-left" href="{{ comment.url }}">
-                    <img style="width: 10px; height: 10px;" src="{% gravatar_url comment.email size=128 %}">
-                </a>
-                {% else %}
-                <img style="width: 10px; height: 10px;" class="pull-left" src="{% gravatar_url comment.email size=128 %}">
-                {% endif %}
-
-                <div class="media-body">
-                    <h4 class="media-heading">{{ comment.user_name }}</h4>
-                    <span class="timespan">{% blocktrans with sometime=comment.submit_date|timesince %}{{ sometime }} ago{% endblocktrans %}</span>
-                    <p>{{ comment.comment|comment_filter }}</p>
-                    {% if settings.COMMENTS_USE_RATINGS %}
-                    {% rating_for comment %}
-                    {% endif %}
-                    {% comment_thread comment %}
-                </div>
-            {% endif %}
-
-            <p>
-                {% if comment.is_removed %}
-                {% trans "Comment deleted" %}
-                {% else %}
-                {% trans "Comment awaiting approval" %}
-                {% endif %}
-                <span class="timespan">{% blocktrans with sometime=comment.submit_date|timesince %}{{ sometime }} ago{% endblocktrans %}</span>
-            </p>
-
-            {% endif %}
-            {% endeditable %}
-    </div>
+            <div class="media-body custom-media-body">
+                <h5 class="media-heading highlighted-green custom-media-heading">{{ comment.user_name }}</h5>
+                <h5 class="media-eading-h5">{{ comment.comment|comment_filter }}</h5>
+                <h6 class="custom-h6-label-model">{% blocktrans with sometime=comment.submit_date|timesince %}{{ sometime }} ago{% endblocktrans %}</h6>
+            </div>
+            <div></div>
+        </div>
     {% endfor %}
-    {% if no_comments %}
-    <p>{% trans "There are currently no comments" %}</p>
-    {% endif %}
+
 
 
