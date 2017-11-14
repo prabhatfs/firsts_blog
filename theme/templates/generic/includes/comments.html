@@ -34,6 +34,8 @@ $(document).ready(function(){
 
         } else {
             //$("#id_name").css("border-bottom-color","red");
+            $(".input_id_name label").removeClass("has-success");
+            $("#id_name").removeClass("has-success");
             $("#id_name").addClass("has-error");
             name_valid = 0;
         }
@@ -43,6 +45,8 @@ $(document).ready(function(){
     $('#id_email').keyup(function() {
          var sEmail = $('#id_email').val();
          if ($.trim(sEmail).length == 0 || !validateEmail(sEmail)) {
+            $(".input_id_email label").removeClass("has-success");
+            $("#id_email").removeClass("has-success");
              $("#id_email").addClass("has-error");
              email_valid = 0;
          } else {
@@ -60,6 +64,7 @@ $(document).ready(function(){
             $("#id_comment").addClass("has-success-text");
             comment_valid = 1;
          } else {
+            $("#id_comment").removeClass("has-success-text");
             comment_valid = 0;
          }
          checkValidForm();
