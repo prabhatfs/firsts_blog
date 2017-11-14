@@ -2,6 +2,15 @@
 
 {% load i18n mezzanine_tags comment_tags blog_tags %}
 
+<script>
+$(function() {
+    $('.reply').click(function() {
+        $('.reply-form').hide();
+        $(this).next('.reply-form').toggle();
+    });
+});
+</script>
+
 <script type="text/javascript">
 
 function validateEmail(email) {
@@ -16,14 +25,70 @@ $(document).ready(function(){
     var email_valid = 0;
     var comment_valid = 0;
 
-    function checkValidForm () {
-        if (!name_valid || !email_valid || !comment_valid) {
-            $("input[type=submit]").attr("disabled", "disabled");
+    function checkValidForm (id) {
+        var res = id.split("_");
+        
+        if (res.length < 3){
+            id = "";
         } else {
-            $("input[type=submit]").removeAttr("disabled");
+            id = res[2];
+        }
+
+        if (!name_valid || !email_valid || !comment_valid) {
+            $("#submit"+id).attr("disabled", "disabled");
+        } else {
+            $("#submit"+id).removeAttr("disabled");
         }
     }
 
+    $('[id^=id_name]').keyup(function(){
+        
+        name_length = $("#"+this.id).val().length;
+        console.log(name_length);
+        if (name_length > 3) {
+            //$("#id_name").css("border-bottom-color","#00b58e");
+            $("#"+this.id).addClass("has-success");
+            $(".input_"+this.id+" label").addClass("has-success");
+            name_valid = 1;
+
+        } else {
+            //$("#id_name").css("border-bottom-color","red");
+            $(".input_"+this.id+" label").removeClass("has-success");
+            $("#"+this.id).removeClass("has-success");
+            $("#"+this.id).addClass("has-error");
+            name_valid = 0;
+        }
+
+        checkValidForm(this.id);
+    });
+
+    $('[id^=id_email]').keyup(function() {
+         var sEmail = $("#"+this.id).val();
+         if ($.trim(sEmail).length == 0 || !validateEmail(sEmail)) {
+            $(".input_"+this.id+" label").removeClass("has-success");
+            $("#"+this.id).removeClass("has-success");
+             $("#"+this.id).addClass("has-error");
+             email_valid = 0;
+         } else {
+             $("#"+this.id).addClass("has-success");
+             $(".input_"+this.id+" label").addClass("has-success");
+             email_valid = 1;
+         }
+         checkValidForm(this.id);
+    });
+
+    $('[id^=id_comment]').keyup(function() {
+         var text = $("#"+this.id).val();
+         if ($.trim(text).length > 3 ) {
+            $("#"+this.id).addClass("has-success-text");
+            comment_valid = 1;
+         } else {
+            $("#"+this.id).removeClass("has-success-text");
+            comment_valid = 0;
+         }
+         checkValidForm(this.id);
+    });
+/*
     $("#id_name").keyup(function(){
         name_length = $("#id_name").val().length;
         if (name_length > 3) {
@@ -69,7 +134,7 @@ $(document).ready(function(){
          }
          checkValidForm();
     });
-    
+*/    
 
 });
 </script>
@@ -81,6 +146,11 @@ $(document).ready(function(){
                     <h3>{% trans "Leave a comment" %}</h3>
 
                     <form method="post" id="comment" action="{{ comment_url }}#comment">
+    {% if not request.POST.replied_to %}
+    {% fields_for posted_comment_form %}
+    {% else %}
+    {% fields_for unposted_comment_form %}
+    {% endif %}
                         <div class="form-group custom-lider-form-group input_id_name">
                             <label class="text-uppercase">Name </label> <sup class="asterisk">*</sup>
                             <input autocomplete="off" name="name" class="form-control custom-form-control-br-bottom " id="id_name" required type="text">
@@ -99,7 +169,7 @@ $(document).ready(function(){
                       </div>
 
                       <div class="form-group custom-lider-form-group">
-                        <input value="Save" class="btn btn-default custom-btn btn-lg btn-submit" disabled="disabled" type="submit">
+                        <input value="Save" class="btn btn-default custom-btn btn-lg btn-submit" disabled="disabled" type="submit" id="submit">
                       </div>
                     </form>
                 </div>
