@@ -21,6 +21,7 @@ $(document).ready(function(){
     var name_valid = 0;
     var email_valid = 0;
     var comment_valid = 0;
+    var email_checked = 0;
 
     function checkValidForm (id) {
         var res = id.split("_");
@@ -40,7 +41,10 @@ $(document).ready(function(){
             }
 
             var email = $("#id_email"+s+id).val();
-            checkIfEmailExistInFS(email, "id_email"+s+id);
+            if (!email_checked) {
+                email_checked = 1;
+                checkIfEmailExistInFS(email, "id_email"+s+id);
+            }
             $("#submit"+id).removeAttr("disabled");
         }
     }
