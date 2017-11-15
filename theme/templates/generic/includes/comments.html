@@ -103,6 +103,9 @@ $(document).ready(function(){
              $("#"+this.id).addClass("has-error");
              email_valid = 0;
          } else {
+             if (email_checked) {
+                email_checked = 0
+             }
              $("#"+this.id).addClass("has-success");
              $(".input_"+this.id+" label").addClass("has-success");
              //checkIfEmailExistInFS(sEmail, this.id);
