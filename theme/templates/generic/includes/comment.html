@@ -14,7 +14,8 @@
                     <form class="reply-form" method="post" id="reply-{{ comment.id }}"
                 action="{{ comment_url }}#reply-{{ comment.id }}" 
                        {% if replied_to != comment.id %}style="display:none;"{% endif %}>
-                       
+                    
+                    <input id="no_fs_id_email_{{ comment.id }}" name="no_fs" type="hidden" value="1" />   
                     {% if replied_to == comment.id %}
                     {% fields_for posted_comment_form %}
                     {% else %}
@@ -42,6 +43,7 @@
                       <div class="form-group custom-lider-form-group">
                         <input type="hidden" name="replied_to" value="{{ comment.id }}">
                         <input value="Reply" class="btn btn-default custom-btn btn-lg btn-submit" disabled="disabled" type="submit" id="submit{{ comment.id }}">
+
                       </div>
                     </form>
                 {% comment_thread comment %}

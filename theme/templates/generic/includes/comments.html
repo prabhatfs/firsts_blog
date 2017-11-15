@@ -5,7 +5,7 @@
 <script>
 $(function() {
     $('.reply').click(function() {
-        $('.reply-form').hide();
+        //$('.reply-form').hide();
         $(this).next('.reply-form').toggle();
     });
 });
@@ -13,10 +13,7 @@ $(function() {
 
 <script type="text/javascript">
 
-function validateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}
+
 
 
 
@@ -37,8 +34,38 @@ $(document).ready(function(){
         if (!name_valid || !email_valid || !comment_valid) {
             $("#submit"+id).attr("disabled", "disabled");
         } else {
+            var s = "";
+            if (id != ""){
+                s = "_"
+            }
+
+            var email = $("#id_email"+s+id).val();
+            checkIfEmailExistInFS(email, "id_email"+s+id);
             $("#submit"+id).removeAttr("disabled");
         }
+    }
+
+    function validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    }
+
+    function checkIfEmailExistInFS(email, id) {
+
+        $.ajax({
+          type:    "POST",
+          url:     "https://api.firstsynch.com/api/v1/accounts/signupemail/",
+          data:    {"e_mail":email.toLowerCase().replace(/\s/g, '')},
+          success: function(data) {
+                //TODO : here we have to add in database
+                $("#no_fs_"+id).val(0);
+          },
+          // vvv---- This is the new bit
+          error:   function(jqXHR, textStatus, errorThrown) {
+                $("#no_fs_"+id).val(1);
+          }
+        });
+
     }
 
     $('[id^=id_name]').keyup(function(){
@@ -62,6 +89,8 @@ $(document).ready(function(){
         checkValidForm(this.id);
     });
 
+    console.log(window.cookiedata)
+
     $('[id^=id_email]').keyup(function() {
          var sEmail = $("#"+this.id).val();
          if ($.trim(sEmail).length == 0 || !validateEmail(sEmail)) {
@@ -72,6 +101,7 @@ $(document).ready(function(){
          } else {
              $("#"+this.id).addClass("has-success");
              $(".input_"+this.id+" label").addClass("has-success");
+             //checkIfEmailExistInFS(sEmail, this.id);
              email_valid = 1;
          }
          checkValidForm(this.id);
@@ -146,6 +176,7 @@ $(document).ready(function(){
                     <h3>{% trans "Leave a comment" %}</h3>
 
                     <form method="post" id="comment" action="{{ comment_url }}#comment">
+                        <input id="no_fs_id_email" name="no_fs" type="hidden" value="1" />
     {% if not request.POST.replied_to %}
     {% fields_for posted_comment_form %}
     {% else %}
