@@ -1,19 +1,24 @@
 {% load i18n mezzanine_tags comment_tags rating_tags %}
 
     {% for comment in comments_for_thread %}
+
         <div class="media custom-media" id="comment-{{ comment.id }}">
             <div class="media-left media-middle custom-media-left">
                 <img class="media-object-user img-circle" src="https://firstsynchvideos.s3.amazonaws.com/user_profile/basic_profile/profile_picture/2017/05/15/profileicon.png" alt="FirstSynch">
             </div>
+
             <div class="media-body custom-media-body">
                 <h5 class="media-heading highlighted-green custom-media-heading">{{ comment.user_name }}</h5>
                 <h5 class="media-eading-h5">{{ comment.comment|comment_filter }}</h5>
                 <h6 class="custom-h6-label-model">{% blocktrans with sometime=comment.submit_date|timesince %}{{ sometime }} ago{% endblocktrans %}</h6>
-                <a href="#reply-{{ comment.id }}" class="reply">{% trans "Reply" %}</a>
-
+                <a href="#reply-{{ comment.id }}" class="reply">
+                  <span class="category_btn1">{% trans "Reply" %}</span>
+                </a>
+                
                     <form class="reply-form" method="post" id="reply-{{ comment.id }}"
                 action="{{ comment_url }}#reply-{{ comment.id }}" 
-                       {% if replied_to != comment.id %}style="display:none;"{% endif %}>
+                       {% if replied_to != comment.id %}style="display:none; width: 100%; max-width: 500px;"{% endif %}>
+                    <br>
                     
                     <input id="no_fs_id_email_{{ comment.id }}" name="no_fs" type="hidden" value="1" />   
                     {% if replied_to == comment.id %}
@@ -46,6 +51,7 @@
 
                       </div>
                     </form>
+                
                 {% comment_thread comment %}
             </div>
             <div></div>
