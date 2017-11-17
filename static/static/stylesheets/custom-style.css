@@ -858,3 +858,46 @@ h4 {
 .navbar .navbar-toggle{padding-top:22px}
 
 }
+
+.card-figure {
+    position: relative;
+    z-index: 1;
+}
+
+.card-body {
+    max-width: 20rem;
+    background: #fff;
+    position: relative;
+    z-index: 2;
+}
+
+.card-meta {
+    width: 100%;
+    max-width: 18.125rem;
+    background: #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    line-height: 3.125rem;
+    font-size: .75em;
+    color: #929292;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    padding-right: 1rem;
+    z-index: 2;
+}
+
+.card-body h3 {
+
+    font-size: 20px;
+    font-weight: 600 !important;
+    line-height: 1.5;
+    letter-spacing: -0.4px;
+    color: #303030;
+    margin: 0;
+    padding: 0;
+
+}
+.card-body h3 a{
+color: #303030;
+}

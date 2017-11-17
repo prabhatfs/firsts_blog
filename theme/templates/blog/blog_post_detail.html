@@ -115,6 +115,7 @@
                      <div class="features-box">
                     <!--h3><a href="{{ recent_post.get_absolute_url }}">
                         {{ recent_post.title }}</a></h3-->
+
                     {% with post.categories.all as categories %}
                     {% if categories %}
                     {% for category in categories|slice:":1" %}
@@ -125,9 +126,13 @@
                     {% endfor %}
                     {% endif %}
                     {% endwith %}
-                    <h3><a href="{{ post.get_absolute_url }}">
-                        {{ post.title }}</a></h3>
+                    
                     </div>
+
+                    </div>
+                                    <div class="card-body">
+                        <h3><a href="{{ post.get_absolute_url }}">
+                        {{ post.title }}</a></h3>
                     </div>
                 <!--p class="feature-contents">{{ post.description_from_content|striptags|truncatewords_html:10|safe }}</p-->
             </div>
