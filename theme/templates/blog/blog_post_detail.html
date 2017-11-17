@@ -109,7 +109,9 @@
 
                 <div class="col-md-4 feature" >
                 <div class="feature-cont-img-box">
+                    <a href="{{ post.get_absolute_url }}">
                     <img src="{{ MEDIA_URL }}{{ post.featured_image }}" class="img-responsive">
+                    </a>
                      <div class="features-box">
                     <!--h3><a href="{{ recent_post.get_absolute_url }}">
                         {{ recent_post.title }}</a></h3-->
@@ -127,7 +129,7 @@
                         {{ post.title }}</a></h3>
                     </div>
                     </div>
-                <p class="feature-contents">{{ post.description_from_content|striptags|truncatewords_html:10|safe }}</p>
+                <!--p class="feature-contents">{{ post.description_from_content|striptags|truncatewords_html:10|safe }}</p-->
             </div>
             {% endfor %}
                     

@@ -1,0 +1,39 @@
+
+
+
+{% if recent_post|length > 3 %}
+{% trans recent_post|length as blog_len %}
+{% trans range(3, blog_len, 3) as row_range %}
+
+{% for i in row_range %}
+<div class="row">
+    <section class="page-section">
+        {% for post in recent_post|blog_slice:i %}
+                <div class="col-md-4 feature">
+                <div class="feature-cont-img-box">
+                    <img src="{{ MEDIA_URL }}{{ post.featured_image }}" class="img-responsive">
+                     <div class="features-box">
+                    <!--h3><a href="{{ recent_post.get_absolute_url }}">
+                        {{ recent_post.title }}</a></h3-->
+                    {% with post.categories.all as categories %}
+                    {% if categories %}
+                    {% for category in categories|slice:":1" %}
+                    <h6>
+                    <a href="{% url "blog_post_list_category" category.slug %}">{{ category }}</a> | {% blocktrans with sometime=post.publish_date|timesince %}{{ sometime }} ago{% endblocktrans %}
+                    </h6>
+                    {% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                    <h3><a href="{{ post.1.get_absolute_url }}">
+                        {{ post.title }}</a></h3>
+                    </div>
+                    </div>
+                <p class="feature-contents">{{ post.description_from_content|striptags|truncatewords_html:10|safe }}</p>
+            </div>
+        {% endfor %}
+    </section>
+</div>
+{% endfor %}
+{% endif %}
+
